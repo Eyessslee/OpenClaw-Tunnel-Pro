@@ -1,11 +1,27 @@
-OpenClaw Tunnel Pro 🚀
+<h1 align="center">OpenClaw Tunnel Pro 🚀</h1>
+
+## 🖥️ 界面截图
+
+### MacOS 版本
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Eyessslee/OpenClaw-Tunnel-Pro/main/images/mac-image1.png" width="30%" alt="MacOS 演示图1">
+  <img src="https://raw.githubusercontent.com/Eyessslee/OpenClaw-Tunnel-Pro/main/images/mac-image2.png" width="30%" alt="MacOS 演示图2">
+  <img src="https://raw.githubusercontent.com/Eyessslee/OpenClaw-Tunnel-Pro/main/images/mac-image3.png" width="30%" alt="MacOS 演示图3">
+</p>
+
+### Win 版本
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Eyessslee/OpenClaw-Tunnel-Pro/main/images/win-image1.png" width="30%" alt="Win 演示图1">
+  <img src="https://raw.githubusercontent.com/Eyessslee/OpenClaw-Tunnel-Pro/main/images/win-image2.png" width="30%" alt="Win 演示图2">
+  <img src="https://raw.githubusercontent.com/Eyessslee/OpenClaw-Tunnel-Pro/main/images/win-image3.png" width="30%" alt="Win 演示图3">
+</p>
 
 <p align="center">
 <a href="#introduction-cn">中文说明</a> |
 <a href="#introduction-en">English</a>
 </p>
 
-<h2 id="introduction-cn">🇨🇳 介绍 (Introduction)</h2>
+<h2 id="introduction-cn">介绍 (Introduction)</h2>
 
 最近开发的一个小工具：OpenClaw Tunnel Pro。
 
@@ -40,7 +56,7 @@ macOS 安全提示：由于应用未经过 Apple 开发者签名，初次打开�
 解决办法：在“访达 (Finder)”中找到应用，右键点击并选择“打开”，在弹出的窗口中再次点击“打开”即可。
 
 
-📜 进化史 (Changelog)
+📜 版本更新 (Changelog)
 
 [v3.5.2]
 
@@ -78,59 +94,55 @@ macOS 安全提示：由于应用未经过 Apple 开发者签名，初次打开�
 
 Hello! I’d like to share a small utility I’ve been working on: OpenClaw Tunnel Pro.
 
-I originally developed this tool to scratch my own itch—specifically the friction of constantly switching SSH tunnels and manually checking metrics while managing OpenClaw instances. My goal was to build a solution that combines a fluid, native app experience with robust, system-level security for server credentials. Now at v3.5.2, it’s stable enough for sharing with anyone in the community.
+I originally developed this tool to solve my own pain points—frequently switching SSH tunnels and checking real-time metrics while managing OpenClaw instances. My goal was to build a solution that combines the smooth experience of a native app with robust security for server credentials. Now at v3.5.2, the project has stabilized, so I’m sharing it with friends who have similar needs.
 
 🌟 Core Features
 
-Real-time Observability: captures Token consumption (24h incremental), active session counts, and total request volume directly via SSH.
-
-Cryptographically Secure: Credentials are managed via macOS Keychain or system-native encrypted stores. No plaintext configs are kept.
-
-Intelligent Lifecycle Management: Effortlessly switch between multiple node profiles with built-in port-collision avoidance and automatic reconnection.
-
-Native Aesthetic Experience: Designed with a platform-first mindset, supporting macOS physical effects and Windows Mica translucent design.
+- **Real-time Data Loop**: Directly polls CLI commands via SSH tunnels to capture and aggregate Token consumption (supports 24-hour incremental filtering), active connection counts, and total interface request volume in real time.
+- **System-Level Secure Storage**: All server addresses, usernames, and passwords are stored via macOS Keychain or system-level encryption interfaces—no plaintext configuration files are kept locally.
+- **Automated Connection Management**: Supports quick switching between multi-node configurations with built-in automatic allocation logic to avoid local port conflicts; integrates millisecond-level heartbeat monitoring for automatic reconnection on disconnection.
+- **Native Interactive Aesthetics**: The macOS version deeply adapts to system-level physical animations, supporting a stepped entrance animation for the monitoring panel; the Windows version supports native Mica (mica) translucent effects.
 
 🛠️ Technical Highlights
 
-Data Integrity via PTY Control: Uses the -T flag in macOS to disable remote PTY, preventing JSON truncation by terminal auto-line-wrapping (\r\n).
-
-Environment-Aware Execution: Implemented support for absolute CLI paths to circumvent "command not found" errors in non-interactive SSH sessions.
-
-Optimized Asset Rendering: Switched to a native NSImageView engine on macOS to bypass sandboxing restrictions on local GIF file access.
-
-Rust-Powered Tunneling: The Windows version leverages the ssh2 library for high-efficiency, in-memory tunnel mapping.
+- **Data Transmission Error Correction**: Introduced the -T parameter in macOS SSH commands to disable the remote pseudo-terminal (PTY) mechanism, completely solving the problem of long JSON data streams failing to parse due to forced automatic line wrapping (\r\n) by Linux terminals.
+- **Environment Adaptation**: Supports absolute path invocation of the OpenClaw CLI (e.g., /root/.nvm/.../bin/openclaw), avoiding the persistent issue of missing environment variables in non-interactive SSH environments.
+- **High-Performance Rendering**: Uses the native NSImageView engine on macOS to load GIF assets, bypassing WebKit sandbox restrictions on local file access and solving the problem of large asset overflow.
+- **Memory-Level Tunneling**: The Windows version leverages Rust’s ssh2 library to establish tunnel mappings directly in memory, significantly reducing system resource usage.
 
 💾 Installation & Usage
 
-Download: Get the latest .dmg or .app from the Releases section.
-
-macOS Security: Since this app is not signed by a paid Apple developer account, you might see a "cannot be verified" warning.
-
-Fix: Right-click the app icon in Finder and select "Open", then confirm in the popup.
+- **Download Installer**: Get the latest .dmg (macOS) or .exe (Windows) file from the Releases section on the right side of the repository.
+- **macOS Security Note**: Since the app is not signed with an Apple Developer ID, you may see a "cannot verify the developer" warning when opening it for the first time.
+- **Solution**: Locate the app in Finder, right-click and select "Open", then click "Open" again in the pop-up window.
 
 
 📜 Changelog (EN)
 
 [v3.5.2]
-
-Introduced the -T flag to disable remote PTY; Added official absolute path support; Migrated to a native NSImageView rendering engine.
+- Introduced the -T parameter to disable remote PTY, fixing the issue of truncated long data; added support for official absolute paths; switched to the native NSImageView rendering engine.
 
 [v3.5.1]
+- Introduced Flexbox constraints to correct Windows button alignment; forced reset of node activation state on startup to fix UI ghost states; physically erased the white border of Windows input boxes.
 
-Corrected UI alignment via Flexbox; Implemented a strict node state-reset on startup.
+[v3.5.0]
+- Integrated official CLI statistics to achieve real-time Token, Links, and Reqs monitoring; added an author information module and GIF animation support; adapted to advanced animations for macOS 26.0+.
+
+[v1.0.0 - v3.0.0]
+- Completed basic SSH tunnel establishment, multi-node persistent management, established the "Peacock Blue" visual specification, and fully integrated system-level encrypted storage.
 
 👨‍💻 About Author
 
 @Eyesslee
 
-I built this tool with the philosophy that professional dev-ops utilities don't have to be visually uninspiring. I hope it helps you stay focused on what matters by making tunnel management as frictionless as possible.
+The original intention behind developing this tool was to pursue a balance between visual aesthetics and underlying technology. I hope it helps you free yourself from tedious operation and maintenance commands, making tunnel management and instance monitoring simpler and more intuitive.
 
 ⚖️ Disclaimer
 
-This project and its binaries are intended for personal testing, technical exchange, and entertainment purposes ONLY.
+This project and its related compiled products (Apps) are for personal technical testing, communication, and entertainment purposes only.
 
-Do not use this tool for any illegal activities or mission-critical production environments.
+Do not use this tool for any illegal purposes or production environments.
 
-The developer is not responsible for any data loss, security breaches, or system failures resulting from the use of this tool.
+The developer does not assume legal responsibility for any data loss, security issues, or system failures caused by the use of this tool.
 
-Licensed under the MIT License.
+This project follows the MIT open-source license.
